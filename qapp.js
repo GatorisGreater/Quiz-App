@@ -91,7 +91,7 @@ function createQuizItems(state, index) {
   $('.progress').html("Progress: " + state.questions[index].questionNumber + " of 5");
   $('.score').html("Score: " + state.score);
 
-  state.questions[index].questionText === 
+  // state.questions[index].questionText === 
   $('.first-answer').html(state.questions[index].questionAnswers[0]);
   $('.second-answer').html(state.questions[index].questionAnswers[1]);
   $('.third-answer').html(state.questions[index].questionAnswers[2]);
@@ -115,17 +115,23 @@ createQuizItems(state, 0);
 
 $('#submitButton').click(function(event) {
     event.preventDefault(); 
-checkAnswer(state, 0);
+if (state.counter === 0) {
+
+    checkAnswer(state, 0);
+}
+else { 
+  checkAnswer(state, state.counter);
+}
 });
 
  function checkAnswer(state, index) {
     console.log(index);
         if ($("input[type='radio'][name='answer1']:checked").val() === state.questions[index].correctAnswer) {
-            alert(state.correctAnsMsg);
+            toastr.success(state.correctAnsMsg);
             $('#nextButton').removeClass("hidden");
         }
         else {
-            alert(state.wrongAnsMsg);
+            toastr.error(state.wrongAnsMsg);
         }
 
     }
@@ -135,38 +141,25 @@ checkAnswer(state, 0);
 
 
 // Current answer is submitted
-$('.answer').submit(function(event) {
-});
+// $('.answer').submit(function(event) {
+//     $('#nextButton').removeClass("hidden");
+// });
 
 // Next question
 $('.next').click(function(event) {
     event.preventDefault();   
-    // state.counter++;    // the same as:- state.counter = state.counter + 1;
+    state.counter++;    // the same as:- state.counter = state.counter + 1;
     console.log(state.counter);
-    nextQuestion();
+    nextQuestion(state, state.counter);
     $('#nextButton').addClass("hidden");
 });
 
 console.log('tec');
 
      
-function nextQuestion() {
-    if (state.questions[0].questionNumber === 1) {
-    createQuizItems(state, 1);
+function nextQuestion(state, questionNumber) {
+    createQuizItems(state, questionNumber);
     }
-    else if (state.questions[1].questionNumber === 2) {
-    createQuizItems(state, 2);
-    }
-    else if (state.questions[2].questionNumber === 3) {
-    createQuizItems(state, 3);
-    }
-    else if (state.questions[3].questionNumber === 4) {
-    createQuizItems(state, 4);
-    }
-    else if (state.questions[4].questionNumber === 5) {
-    createQuizItems(state, 5);
-    }
-}
 
 
 // Restart button is clicked
