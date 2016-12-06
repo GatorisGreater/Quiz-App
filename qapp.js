@@ -1,58 +1,51 @@
-// Create your initial state object
+
+
+// Create y
+
+// our initial state object
 
 
  	// .val()
  	//
 
 var state = {
-	
+
  questions: [{
         	questionNumber: 1,
         	questionText: "what is the home town of the Simpsons?",
         	questionAnswers: ["Washington" , "Hollywood", "Springfield", "Pasadena"],
-            correctAnswer: "Springfield",
-            correctAnsMsg: "Cowabunga man!",
-            wrongAnsMsg: "Doh!",
+            correctAnswer: "2",
         },
         {
         	questionNumber: 2,
         	questionText: "Who is Homer's wife?",
         	questionAnswers: ["Marge" , "Peggy", "Mary", "Susan"],
-            correctAnswer: "Marge",
-            correctAnsMsg: "Cowabunga man!",
-            wrongAnsMsg: "Doh!",
+            correctAnswer: "0",
         },
         {
         	questionNumber: 3,
         	questionText: "How many months does it take to create an Simpsons episode?",
         	questionAnswers: ["1","2","4","6"],
-            correctAnswer: "6",
-            correctAnsMsg: "Cowabunga man!",
-            wrongAnsMsg: "Doh!",
+            correctAnswer: "3",
         },	
         {
         	questionNumber: 4,
         	questionText: "What is the family's dog name?",
         	questionAnswers: ["Santa's Little Helper" , "Ralphy the eater", "Johnny the killer", "Brea the breather"],
-            correctAnswer: "Santa's Little Helper",
-            correctAnsMsg: "Cowabunga man!",
-            wrongAnsMsg: "Doh!",
+            correctAnswer: "0",
         },
-
         {
-
         	questionNumber: 5,
         	questionText: "How many children are in the Simpson family?",
         	questionAnswers: ["6" , "2", "3", "5"],
-            correctAnswer: "3",
-            correctAnsMsg: "Cowabunga man!",
-            wrongAnsMsg: "Doh!",
+            correctAnswer: "2",
+        }
+ ],
 
-// add the progress bar in the state as well 
-
-
- }]
-
+ score: 0,
+ correctAnsMsg: "Cowabunga man!",
+ wrongAnsMsg: "Doh!",
+ counter: 0
 
     // Questions
     // Answers
@@ -63,14 +56,42 @@ var state = {
 };
 
 // State manipulation functions
+
+    //If the answer choice correct?
+   
+
+
+
+
+
+    // Update Progress Property
+   
+
+
+
+   // Update Score Property
+       // if answer is correct
+         //   increment score 
+
+
+
 // Render functions
+
+    //Hides Start Page and Renders Question Page
+
+
+
+    //Renders Questions Page after advancing past Start Page
 
 
 // displays question text inside of span.
-//displays question responses inside of Ul,li.
 
 function createQuizItems(state, index) {
   $('.question').html(state.questions[index].questionText);
+  $('.progress').html("Progress: " + state.questions[index].questionNumber + " of 5");
+  $('.score').html("Score: " + state.score);
+
+  state.questions[index].questionText === 
   $('.first-answer').html(state.questions[index].questionAnswers[0]);
   $('.second-answer').html(state.questions[index].questionAnswers[1]);
   $('.third-answer').html(state.questions[index].questionAnswers[2]);
@@ -82,10 +103,9 @@ function createQuizItems(state, index) {
 // When start button is submitted
 $('#startButton').click(function(event) {
 	event.preventDefault();	
-    
 $('#div2').removeClass("hidden");
 $('#div1').addClass("hidden");
-createQuizItems(state, 3);
+createQuizItems(state, 0);
 
 //find me this inside the answers 
 
@@ -93,9 +113,22 @@ createQuizItems(state, 3);
 	//hide .startpage and .final and only show .qustions div
 });
 
+$('#submitButton').click(function(event) {
+    event.preventDefault(); 
+checkAnswer(state, 0);
+});
 
+ function checkAnswer(state, index) {
+    console.log(index);
+        if ($("input[type='radio'][name='answer1']:checked").val() === state.questions[index].correctAnswer) {
+            alert(state.correctAnsMsg);
+            $('#nextButton').removeClass("hidden");
+        }
+        else {
+            alert(state.wrongAnsMsg);
+        }
 
-
+    }
 
 
 
@@ -107,7 +140,34 @@ $('.answer').submit(function(event) {
 
 // Next question
 $('.next').click(function(event) {
+    event.preventDefault();   
+    // state.counter++;    // the same as:- state.counter = state.counter + 1;
+    console.log(state.counter);
+    nextQuestion();
+    $('#nextButton').addClass("hidden");
 });
+
+console.log('tec');
+
+     
+function nextQuestion() {
+    if (state.questions[0].questionNumber === 1) {
+    createQuizItems(state, 1);
+    }
+    else if (state.questions[1].questionNumber === 2) {
+    createQuizItems(state, 2);
+    }
+    else if (state.questions[2].questionNumber === 3) {
+    createQuizItems(state, 3);
+    }
+    else if (state.questions[3].questionNumber === 4) {
+    createQuizItems(state, 4);
+    }
+    else if (state.questions[4].questionNumber === 5) {
+    createQuizItems(state, 5);
+    }
+}
+
 
 // Restart button is clicked
 $('.restart').click(function(event) {

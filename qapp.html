@@ -18,52 +18,37 @@
 
 
 	<div id="div2" class="questions hidden">
-		<h6> </h6>
- 		<h6> </h6>
+		<h6 class="progress"> </h6>
+ 		<h6 class="score"> </h6>
  		<span class="question"></span>
  	<form>
  		<!-- To check if the answer value is right put a class on the input tag -->
- 			 <input  type="radio" name="answer1" value="1" required="" />
- 			 <!-- <span class= "first-answers"> </span> -->
+ 			 <input  type="radio" name="answer1" value="0" />
+ 			 
  	 		 <label class="first-answer" for="answer1"></label> 
  	 	<br>
 
- 	 		<input  type="radio" name="answer1" value="1" required="" />
- 	 		<!-- <span class= "second-answers"> </span> -->
+ 	 		<input  type="radio" name="answer1" value="1" />
+ 	 		
  	 		 <label class="second-answer" for="answer1"></label> 
  	 		
 		<br>
- 	 		<input  type="radio" name="answer1" value="1" required="" />
- 	 	<!-- 	<span class= "third-answers"> </span> -->
+ 	 		<input  type="radio" name="answer1" value="2" />
+ 	 	
  	 		 <label class="third-answer" for="answer1"></label> 
  	 		
 		<br>
- 	 		<input  type="radio" name="answer1" value="1" required="" />
- 	 		<!-- <span class= "fourth-answers"> </span> -->
+ 	 		<input  type="radio" name="answer1" value="3" />
+ 	 		
  	 		<label class="fourth-answer" for="answer1"></label> 
  	 		
-<!-- 
-        	<li id="secondanswer"><input type="radio" name="answer2" value="2" ="">
- 	 		 <label for="answer2"></label> 
- 	 		</li>
-        
- 	 		<li id="thirdanswer"><input type="radio" name="answer3" value="3" ="">
- 	 		 <label for="answer3"></label> 
- 	 		</li>
-
- 	 	 	<li id="fourthanswer"><input type="radio" name="answer4" value="4" ="">
- 	 	 	<label for="answer4"></label> 
- 	 		</li> -->
-
- 		
-
- 	        
- 	 		<button type='submit'>Submit</button>
+ 			        
+ 	 		<button id='submitButton' type='submit'>Submit</button>
  	 		
  	 </form>
 
  	 		
- 	 		<button type='Next'>Next</button>
+ 	 		<button id="nextButton" type="Next" class="next hidden">Next</button>
 
 	</div>
 
