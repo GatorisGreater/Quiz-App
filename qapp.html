@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Quizzapp</title>
+	<link rel="stylesheet" type="text/css" href="quizapp.css">
+</head>
+
+<body>
+	<h1>  Simpsons Quiz-App </h1>
+
+	<div id="div1" class="startpage">
+		
+			
+ 	 		<button id='startButton'>Start</button>
+		
+	</div>
+
+
+
+	<div id="div2" class="questions hidden">
+		<h6> </h6>
+ 		<h6> </h6>
+ 		<span class="question"></span>
+ 	<form>
+ 		<!-- To check if the answer value is right put a class on the input tag -->
+ 			 <input  type="radio" name="answer1" value="1" required="" />
+ 			 <!-- <span class= "first-answers"> </span> -->
+ 	 		 <label class="first-answer" for="answer1"></label> 
+ 	 	<br>
+
+ 	 		<input  type="radio" name="answer1" value="1" required="" />
+ 	 		<!-- <span class= "second-answers"> </span> -->
+ 	 		 <label class="second-answer" for="answer1"></label> 
+ 	 		
+		<br>
+ 	 		<input  type="radio" name="answer1" value="1" required="" />
+ 	 	<!-- 	<span class= "third-answers"> </span> -->
+ 	 		 <label class="third-answer" for="answer1"></label> 
+ 	 		
+		<br>
+ 	 		<input  type="radio" name="answer1" value="1" required="" />
+ 	 		<!-- <span class= "fourth-answers"> </span> -->
+ 	 		<label class="fourth-answer" for="answer1"></label> 
+ 	 		
+<!-- 
+        	<li id="secondanswer"><input type="radio" name="answer2" value="2" ="">
+ 	 		 <label for="answer2"></label> 
+ 	 		</li>
+        
+ 	 		<li id="thirdanswer"><input type="radio" name="answer3" value="3" ="">
+ 	 		 <label for="answer3"></label> 
+ 	 		</li>
+
+ 	 	 	<li id="fourthanswer"><input type="radio" name="answer4" value="4" ="">
+ 	 	 	<label for="answer4"></label> 
+ 	 		</li> -->
+
+ 		
+
+ 	        
+ 	 		<button type='submit'>Submit</button>
+ 	 		
+ 	 </form>
+
+ 	 		
+ 	 		<button type='Next'>Next</button>
+
+	</div>
+
+
+
+
+	<div id="div3" class = "final hidden"	> 
+		<h4> Over all score </h4>
+		<h1> </h1>
+		<input type="button" name="restart" value= true>
+ 	 		<button type='restart'>Restart</button>
+
+	
+	</div>
+
+
+
+
+
+
+
+
+
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="qapp.js"></script>
+</body>
+</html>
