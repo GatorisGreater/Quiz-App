@@ -138,8 +138,6 @@ else {
 
 
 
-
-
 // Current answer is submitted
 // $('.answer').submit(function(event) {
 //     $('#nextButton').removeClass("hidden");
@@ -150,17 +148,17 @@ $('.next').click(function(event) {
     event.preventDefault();   
     state.counter++;    // the same as:- state.counter = state.counter + 1;
     console.log(state.counter);
-    nextQuestion(state, state.counter);
+    createQuizItems(state, state.counter);
     $('#nextButton').addClass("hidden");
 });
 
 console.log('tec');
 
      
-function nextQuestion(state, questionNumber) {
-    createQuizItems(state, questionNumber);
-    }
-
+// function nextQuestion(state, questionNumber) {
+//     createQuizItems(state, questionNumber);
+//     }
+    
 
 // Restart button is clicked
 $('.restart').click(function(event) {
