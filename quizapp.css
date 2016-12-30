@@ -1,33 +1,43 @@
-body {
-	background-color: #C7CEEA;
-
+html { 
+  background: url(https://stravamg.files.wordpress.com/2015/07/bart_with_blackboard.jpg) no-repeat center center fixed; 
+  background-size: cover;
 }
 
+body {
+	font-family: Comic Sans MS, cursive, Serif;
+	color: white;
+}
 
 h1 {
 	text-align: center;
 	padding-bottom: 50px;
-	
 }
 
-.startpage {
-
-	background-color: white;	
-	margin-left: auto;
-	margin-right: auto;
-	box-shadow: 6px 8px 8px #95989A;
-	width: 400px;
-	height: 400px;
-}	
+div {
+	padding-left: 50px;
+}
 
 button {
 display: block;
 margin-left: auto;
 margin-right: auto;
-float: bottom;
+border-radius: 15px;
+width: 100px;
+height: 60px;
+background-color: white;
+font-family: Comic Sans MS, cursive, Serif;
+font-size: 20px;
 }
 
+button:hover {
+    background-color: #4CAF50; 
+    color: white;
+}
 
+img {
+height: 300px;
+width: 300px;
+}
 
 
 .hidden {

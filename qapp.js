@@ -1,165 +1,168 @@
-
-
-// Create y
-
-// our initial state object
-
-
- 	// .val()
- 	//
+// Create our initial state object
 
 var state = {
 
  questions: [{
         	questionNumber: 1,
-        	questionText: "what is the home town of the Simpsons?",
+        	questionText: "What is the home town of the Simpsons?",
         	questionAnswers: ["Washington" , "Hollywood", "Springfield", "Pasadena"],
             correctAnswer: "2",
+            correctAnswerText: "Springfield.",
         },
         {
         	questionNumber: 2,
         	questionText: "Who is Homer's wife?",
         	questionAnswers: ["Marge" , "Peggy", "Mary", "Susan"],
             correctAnswer: "0",
+            correctAnswerText: "Marge.",
         },
         {
         	questionNumber: 3,
-        	questionText: "How many months does it take to create an Simpsons episode?",
+        	questionText: "How many months does it take to create a Simpsons episode?",
         	questionAnswers: ["1","2","4","6"],
             correctAnswer: "3",
+            correctAnswerText: "6 months.",
         },	
         {
         	questionNumber: 4,
-        	questionText: "What is the family's dog name?",
-        	questionAnswers: ["Santa's Little Helper" , "Ralphy the eater", "Johnny the killer", "Brea the breather"],
+        	questionText: "What is the family dog's name?",
+        	questionAnswers: ["Santa's Little Helper" , "Mr. Tiddlywinks", "Geronimo", "Brea the Breather"],
             correctAnswer: "0",
+            correctAnswerText: "Santa's Little Helper.",
         },
         {
         	questionNumber: 5,
         	questionText: "How many children are in the Simpson family?",
         	questionAnswers: ["6" , "2", "3", "5"],
             correctAnswer: "2",
+            correctAnswerText: "3.",
         }
  ],
 
  score: 0,
- correctAnsMsg: "Cowabunga man!",
+ correctAnsMsg: "Cowabunga!",
  wrongAnsMsg: "Doh!",
  counter: 0
-
-    // Questions
-    // Answers
-    // Your choice of answer	
-    // Message(s) to let them know they have the correct answer	
-    // Message(s) when they don't have the correct answer
-    // Other things like score? Anything else?
 };
 
 // State manipulation functions
 
-    //If the answer choice correct?
-   
+     //To ensure we're evaluating the correct question and answer.
+        function answerMatchesQuestion() {
+            if (state.counter === 0) {
+               checkAnswer(state, 0);
+               renderNextQuestion(); 
+            }
+            else if (state.counter === 4) {
+               checkAnswer(state, 4);
+               ///had to declare global 'score 'here for reference in my renderFinalPage function but not sure why?
+               score = state.score; 
+               renderFinalPage();
+               resetCounter();
+               resetScore();
+            }
+            else { 
+                checkAnswer(state, state.counter);
+                renderNextQuestion(); 
+            }
+        }
 
+    //Is the answer choice correct?  
+        function checkAnswer(state, index) {
+            console.log(index);
+            if ($("input[type='radio'][name='answer1']:checked").val() === state.questions[index].correctAnswer) {
+                showCorrectAnswerMessage();
+                state.counter++;
+                state.score++;
+            }
+            else {
+                showIncorrectAnswerMessage();
+                state.counter++;
+            }
+        }
 
+    //Resets the counter
+        function resetCounter() {
+            state.counter = 0;
+        }
 
-
-
-    // Update Progress Property
-   
-
-
-
-   // Update Score Property
-       // if answer is correct
-         //   increment score 
-
+    //Resets the score
+        function resetScore() {
+            state.score = 0;
+        }
 
 
 // Render functions
 
     //Hides Start Page and Renders Question Page
+        function advanceToQuizFromStartPage() {
+            $('#div2').removeClass("hidden");
+            $('#div1').addClass("hidden");
+        }
 
+    //Renders Question and Answers after advancing past Start Page
+        function createQuizItems(state, index) {
+        // Renders question text, player progress, and player score.
+            $('.question').html(state.questions[index].questionText);
+            $('.progress').html("Progress: " + state.questions[index].questionNumber + " of 5");
+            $('.score').html("Score: " + state.score);
 
+        // Renders answer choice text inside of form label elements.
+            $('.first-answer').html(state.questions[index].questionAnswers[0]);
+            $('.second-answer').html(state.questions[index].questionAnswers[1]);
+            $('.third-answer').html(state.questions[index].questionAnswers[2]);
+            $('.fourth-answer').html(state.questions[index].questionAnswers[3]);
+        }
+    
+    //Renders Correct Answer Message
+        function showCorrectAnswerMessage() {
+            toastr.success(state.correctAnsMsg);
+        }
 
-    //Renders Questions Page after advancing past Start Page
+    //Renders Incorrect Answer Message    
+        function showIncorrectAnswerMessage() {
+            toastr.error(state.wrongAnsMsg + " Mr. Burns said the answer was " + state.questions[state.counter].correctAnswerText);            
+        }
 
+    //Clears Radio Button and Renders Next Item Set
+        function renderNextQuestion () {
+            $('input').prop('checked', false);
+            createQuizItems(state, state.counter);
+        }
 
-// displays question text inside of span.
+    //Renders Final Page with Score and Option to Start Over 
+        function renderFinalPage(state, index) {
+        // Renders Feedback page and Start Over Button, Hides Questions Form 
+            $('#div3').removeClass("hidden");
+            $('#div2').addClass("hidden");
 
-function createQuizItems(state, index) {
-  $('.question').html(state.questions[index].questionText);
-  $('.progress').html("Progress: " + state.questions[index].questionNumber + " of 5");
-  $('.score').html("Score: " + state.score);
+        // Render Score on Feedback page. 
+            $('.overall-score').html("Have a Duff. You correctly answered " + score + " questions!");
+        }
 
-  // state.questions[index].questionText === 
-  $('.first-answer').html(state.questions[index].questionAnswers[0]);
-  $('.second-answer').html(state.questions[index].questionAnswers[1]);
-  $('.third-answer').html(state.questions[index].questionAnswers[2]);
-  $('.fourth-answer').html(state.questions[index].questionAnswers[3]);
-}
-
+    //Hides Final Page and Renders Question Page
+        function advanceToBeginningFromEnd() {
+            $('#div1').removeClass("hidden");
+            $('#div3').addClass("hidden");
+        }
 
 // Event handlers
-// When start button is submitted
+
+// When start button is clicked.
 $('#startButton').click(function(event) {
-	event.preventDefault();	
-$('#div2').removeClass("hidden");
-$('#div1').addClass("hidden");
-createQuizItems(state, 0);
-
-//find me this inside the answers 
-
-// $('.startpage').addclass()
-	//hide .startpage and .final and only show .qustions div
+	event.preventDefault();
+    advanceToQuizFromStartPage();
+    createQuizItems(state, 0);
 });
 
+// When answer submit button is selected.
 $('#submitButton').click(function(event) {
-    event.preventDefault(); 
-if (state.counter === 0) {
-
-    checkAnswer(state, 0);
-}
-else { 
-  checkAnswer(state, state.counter);
-}
+    event.preventDefault();
+    answerMatchesQuestion(); 
 });
 
- function checkAnswer(state, index) {
-    console.log(index);
-        if ($("input[type='radio'][name='answer1']:checked").val() === state.questions[index].correctAnswer) {
-            toastr.success(state.correctAnsMsg);
-            $('#nextButton').removeClass("hidden");
-        }
-        else {
-            toastr.error(state.wrongAnsMsg);
-        }
-
-    }
-
-
-
-// Current answer is submitted
-// $('.answer').submit(function(event) {
-//     $('#nextButton').removeClass("hidden");
-// });
-
-// Next question
-$('.next').click(function(event) {
-    event.preventDefault();   
-    state.counter++;    // the same as:- state.counter = state.counter + 1;
-    console.log(state.counter);
-    createQuizItems(state, state.counter);
-    $('#nextButton').addClass("hidden");
-});
-
-console.log('tec');
-
-     
-// function nextQuestion(state, questionNumber) {
-//     createQuizItems(state, questionNumber);
-//     }
-    
-
-// Restart button is clicked
+// Restart button
 $('.restart').click(function(event) {
+    event.preventDefault();
+    advanceToBeginningFromEnd();
 });		
