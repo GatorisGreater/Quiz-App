@@ -1,4 +1,4 @@
-// Create our initial state object
+// Create initial state object
 
 var state = {
 
@@ -55,7 +55,6 @@ var state = {
             }
             else if (state.counter === 4) {
                checkAnswer(state, 4);
-               ///had to declare global 'score 'here for reference in my renderFinalPage function but not sure why?
                score = state.score; 
                renderFinalPage();
                resetCounter();
@@ -69,7 +68,13 @@ var state = {
 
     //Is the answer choice correct?  
         function checkAnswer(state, index) {
-            console.log(index);
+            
+            //WIP Validation Function for Radio Buttons
+
+            // if(!validateRadios()) {
+            //     return false;
+            // }
+
             if ($("input[type='radio'][name='answer1']:checked").val() === state.questions[index].correctAnswer) {
                 showCorrectAnswerMessage();
                 state.counter++;
@@ -91,8 +96,45 @@ var state = {
             state.score = 0;
         }
 
+    //WIP - Radio Button Validation
+        function validateRadios() {
+          var radioButtons = document.getElementsByName('answer1');
+            for (var i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    return true;
+                }
+                else {
+                    alert("Please choose answer");
+                    return false;
+                }
+            }
+        }
 
-// Render functions
+    //WIP - Form Validation using jquery  
+
+            // $("input").prop('required', true);
+        // $("#myform").validator();
+
+        // jQuery.validator.setDefaults({
+        //     debug: true,
+        // //     success: "valid"
+        // // });
+//         $("#myform").validate({
+//             rules: {
+//             answer1: {
+//             require_from_group: [1, ".answer"]
+//             }
+//         //     // home_phone: {
+//         //     // require_from_group: [1, ".phone-group"]
+//         //     // },
+//         //     // work_phone: {
+//         //     //  require_from_group: [1, ".phone-group"]
+//         //     // }
+//         }
+//         });
+
+
+// // Render functions
 
     //Hides Start Page and Renders Question Page
         function advanceToQuizFromStartPage() {
@@ -137,7 +179,7 @@ var state = {
             $('#div2').addClass("hidden");
 
         // Render Score on Feedback page. 
-            $('.overall-score').html("Have a Duff. You correctly answered " + score + " questions!");
+            $('.overall-score').html("Have a Duff. You correctly answered " + score + " of 5 questions!");
         }
 
     //Hides Final Page and Renders Question Page
