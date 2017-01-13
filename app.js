@@ -47,9 +47,13 @@ var state = {
 
 // State manipulation functions
 
-     //To ensure we're evaluating the correct question and answer.
+     //To ensure an answer's been chosen and we're evaluating the correct question/answer pair.
         function answerMatchesQuestion() {
-            if (state.counter === 0) {
+            if (!($("input[type='radio'][name='answer']:checked").val())) {
+                toastr.error("Please select an answer");
+                return false;
+            }    
+            else if (state.counter === 0) {
                checkAnswer(state, 0);
                renderNextQuestion(); 
             }
@@ -68,11 +72,7 @@ var state = {
 
     //Is the answer choice correct?  
         function checkAnswer(state, index) {
-            if (!($("input[type='radio'][name='answer']:checked").val())) {
-                alert("Please choose answer");
-                return false;
-            }
-            else if ($("input[type='radio'][name='answer']:checked").val() === state.questions[index].correctAnswer) {
+            if ($("input[type='radio'][name='answer']:checked").val() === state.questions[index].correctAnswer) {
                 showCorrectAnswerMessage();
                 state.counter++;
                 state.score++;
@@ -94,18 +94,18 @@ var state = {
         }
 
     //WIP - Radio Button Validation using JS
-        function validateRadios() {
-          var radioButtons = document.getElementsByName('answer');
-            for (var i = 0; i < radioButtons.length; i++) {
-                if (radioButtons[i].checked) {
-                    return true;
-                }
-                else {
-                    alert("Please choose answer");
-                    return false;
-                }
-            }
-        }
+        // function validateRadios() {
+        //   var radioButtons = document.getElementsByName('answer');
+        //     for (var i = 0; i < radioButtons.length; i++) {
+        //         if (radioButtons[i].checked) {
+        //             return true;
+        //         }
+        //         else {
+        //             alert("Please choose answer");
+        //             return false;
+        //         }
+        //     }
+        // }
 
     //WIP - Radio Button Validation using jquery  
 
