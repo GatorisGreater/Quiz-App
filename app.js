@@ -68,14 +68,11 @@ var state = {
 
     //Is the answer choice correct?  
         function checkAnswer(state, index) {
-            
-            //WIP Validation Function for Radio Buttons
-
-            // if(!validateRadios()) {
-            //     return false;
-            // }
-
-            if ($("input[type='radio'][name='answer1']:checked").val() === state.questions[index].correctAnswer) {
+            if (!($("input[type='radio'][name='answer']:checked").val())) {
+                alert("Please choose answer");
+                return false;
+            }
+            else if ($("input[type='radio'][name='answer']:checked").val() === state.questions[index].correctAnswer) {
                 showCorrectAnswerMessage();
                 state.counter++;
                 state.score++;
@@ -96,9 +93,9 @@ var state = {
             state.score = 0;
         }
 
-    //WIP - Radio Button Validation
+    //WIP - Radio Button Validation using JS
         function validateRadios() {
-          var radioButtons = document.getElementsByName('answer1');
+          var radioButtons = document.getElementsByName('answer');
             for (var i = 0; i < radioButtons.length; i++) {
                 if (radioButtons[i].checked) {
                     return true;
@@ -110,7 +107,7 @@ var state = {
             }
         }
 
-    //WIP - Form Validation using jquery  
+    //WIP - Radio Button Validation using jquery  
 
             // $("input").prop('required', true);
         // $("#myform").validator();
@@ -184,6 +181,7 @@ var state = {
 
     //Hides Final Page and Renders Question Page
         function advanceToBeginningFromEnd() {
+            $('input').prop('checked', false);
             $('#div1').removeClass("hidden");
             $('#div3').addClass("hidden");
         }
