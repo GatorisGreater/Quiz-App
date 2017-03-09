@@ -1,5 +1,6 @@
 html { 
-  background: url(https://stravamg.files.wordpress.com/2015/07/bart_with_blackboard.jpg) no-repeat center center fixed; 
+  background: url(https://stravamg.files.wordpress.com/2015/07/bart_with_blackboard.jpg) 
+  no-repeat center center fixed; 
   background-size: cover;
 }
 
