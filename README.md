@@ -3,13 +3,11 @@
 ### API 
 No APIs were harmed in the making of this App.
 
-### Summary
-
 ### Screenshot
 ![Quiz App Screenshot](https://github.com/gatorisgreater/portfolio/blob/master/assets/quiz-app.PNG "Quiz App Screenshot")
 
 ### UX
-User plays a Simpsons trivia game. The user gets a chance to answer 5 questions and receive right or wrong feedback on each selection. The user cannot skip a question without answering. After the 5th question the user receives their final score and the option to start the quiz over.
+Use this app to prove your Simpsons trivia knowledge. Answer 5 questions and receive right or wrong feedback for each question. You cannot skip a question without answering. After the 5th question you'll receive your final score and the option to start the quiz over.
 
 ### Tech Stack
 
