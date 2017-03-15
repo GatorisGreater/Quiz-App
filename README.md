@@ -19,4 +19,4 @@ Use this app to prove your Simpsons knowledge. Answer 5 questions and receive ri
 ### Requirements/Installation
 Runs in the browser.
 
-## The Quiz App is designed for the entertainment.
+## The Quiz App is designed for entertainment.
